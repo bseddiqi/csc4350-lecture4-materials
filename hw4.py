@@ -16,32 +16,37 @@
 # and repeatedly mutates it? Leave a comment explaining which one you chose
 # and under what circumstances that might make sense. There's no right answer! 
 
+#I cannot think of a reason why creating an instance variable might be any more efficient 
+#for starting_value. It can be the idea of it updating constantly might be a problem. 
+#We might want it to be more clear as of what the variable is doing through out the code.
+#If it were me, I would keep it the way it is, but as I stated before it might be better to create
+#an instance variable but I really don't know if that is a good/valid reason.
+
+#Not only that, I really want to go over this code in class if possible. 
+
 import math
 
-def complicated_math_operation(starting_value, min_value, max_value, coefficient):
+def complicated_math_operation(self, min_value, max_value, coefficient):
     res = starting_value
-    res = multiply_it(res, min_value, max_value, coefficient)
-    res = add_it(res, min_value, max_value, coefficient)
-    res = sqrt_it(res, min_value, max_value, coefficient)
-    res = compound_op_it(res, min_value, max_value, coefficient)
+    res = self.multiply_it(res)
+    res = self.add_it(res)
+    res = self.sqrt_it(res)
+    res = self.compound_op_it(res)
     return res
 
-def multiply_it(starting_value, min_value, max_value, coefficient):
-    return max(min_value, min(max_value, starting_value * coefficient))
+def multiply_it(self, min_value, max_value, coefficient):
+    return max(self.min_value, min(self.max_value, starting_value * self.coefficient))
 
-def add_it(starting_value, min_value, max_value, coefficient):
-    return max(min_value, min(max_value, starting_value + coefficient))
+def add_it(self, min_value, max_value, coefficient):
+    return max(self.min_value, min(self.max_value, starting_value + self.coefficient))
  
-def sqrt_it(starting_value, min_value, max_value, coefficient):
-    return max(min_value, min(max_value, math.pow(starting_value, -coefficient)))
+def sqrt_it(self, min_value, max_value, coefficient):
+    return max(self.min_value, min(self.max_value, math.pow(starting_value, -self.coefficient)))
 
-def compound_op_it(starting_value, min_value, max_value, coefficient):
-    return add_it(
-        multiply_it(starting_value, min_value, max_value, coefficient),
-        min_value,
-        max_value,
-        coefficient
-    )
+def compound_op_it(self, self.min_value, self.max_value, self.coefficient):
+    return self.add_it(self.multiply_it(starting_value)
 
-
-    
+def complicated_math_operation(self, min_value, max_value, coefficient):
+    self.min_value = min_value
+    self.max_value = max_value
+    self.coefficient = coefficient
